@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Client extends Model
 {
     use HasFactory;
+    protected $fillablen = ['name', 'due', 'comments'];
 }

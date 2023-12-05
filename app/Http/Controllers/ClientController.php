@@ -13,7 +13,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return view('client.index');
+        $clients = Client::paginate(5);
+        return view('client.index')->with('clients', $clients);
     }
 
     /**
@@ -32,7 +33,7 @@ class ClientController extends Controller
         $request->validate([
 
             'name' => 'required|max:20',
-            'due' => 'required|gte:50'
+            'due' => 'required|gte:1'
         ]);
 
        $clients = Client::create($request->only('name', 'due', 'comments'));

@@ -27,11 +27,14 @@
                 @if (!empty($clients))
                     @forelse ($clients as $client)
                         <tr>
-                            <td>{{ $client->name }}</td>
-                            <td>{{ $client->due }}</td>
                             <td>{{ $client->comments }}</td>
+                            <td>{{ $client->due }}</td>
+                            <td>{{ $client->name }}</td>
                         </tr>
                         @empty
+                        <tr>
+                            <td colspan="3">No hay registros</td>
+                        </tr>
                     @endforelse
                 @else
                     <!-- Código para mostrar si $clients está vacío o no definido -->
@@ -39,5 +42,9 @@
                 </tbody>
             </table>
         </div>
+        
+            @if ($clients->count())
+                {{ $clients->links() }}
+            @endif
     </div>
 @endsection

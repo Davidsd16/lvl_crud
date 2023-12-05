@@ -35,11 +35,12 @@ class ClientController extends Controller
             'due' => 'required|gte:50'
         ]);
 
-        $client = Client::created($request->only('name', 'due', 'comments'));
+       $clients = Client::create($request->only('name', 'due', 'comments'));
+       //$clients = Client::all(); 
+        
+        Session::flash('mensaje', 'Registro creado con exito');
 
-        Session::flash('mensaje', 'Registro creado con exito!');
-
-        return redirect()->route('client.index');
+        return redirect()->route('client.index', compact('clients'));
     }
 
 

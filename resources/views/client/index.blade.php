@@ -8,8 +8,9 @@
         @if (Session::has('mensaje'))
 
             <div class="alert alert-info my-5">
-            {{ Session::get('mensaje') }}
+                {{ Session::get('mensaje') }}
             </div>
+
         @endif
 
         <div class="mx-auto">
@@ -21,11 +22,20 @@
                         <th>Nombre</th>
                     </tr>
                 </thead>
+
                 <tbody>
-                    <tr>
-                        <td>Eliminar - Editar</td>
-                        <td>0.0</td>
-                        <td>FelinoHost</td>
+                @if (!empty($clients))
+                    @forelse ($clients as $client)
+                        <tr>
+                            <td>{{ $client->name }}</td>
+                            <td>{{ $client->due }}</td>
+                            <td>{{ $client->comments }}</td>
+                        </tr>
+                        @empty
+                    @endforelse
+                @else
+                    <!-- Código para mostrar si $clients está vacío o no definido -->
+                @endif
                 </tbody>
             </table>
         </div>

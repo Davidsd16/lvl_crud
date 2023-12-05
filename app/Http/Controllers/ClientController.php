@@ -28,8 +28,17 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+
+            'name' => 'required|max:20',
+            'due' => 'required|gte:50'
+        ]);
+
+        $client = Client::created($request->only('name', 'due', 'comments'));
+
+        return redirect()->route('client.index');
     }
+
 
     /**
      * Display the specified resource.

@@ -27,7 +27,10 @@
                 @if (!empty($clients))
                     @forelse ($clients as $client)
                         <tr>
-                            <td>{{ $client->comments }}</td>
+                            <td>
+                                <a href="{{ route ('client.edit', $client) }}" class="btn btn-warning">Editar</a>
+                                Eliminar
+                            </td>
                             <td>{{ $client->due }}</td>
                             <td>{{ $client->name }}</td>
                         </tr>

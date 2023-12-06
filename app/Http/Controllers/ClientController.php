@@ -36,9 +36,8 @@ class ClientController extends Controller
             'due' => 'required|gte:1'
         ]);
 
-       $clients = Client::create($request->only('name', 'due', 'comments'));
-       //$clients = Client::all(); 
-        
+        $clients = Client::create($request->only('name', 'due', 'comments'));
+
         Session::flash('mensaje', 'Registro creado con exito');
 
         return redirect()->route('client.index', compact('clients'));
@@ -58,7 +57,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        //
+        return view('client.form')->with('client', $client);
     }
 
     /**
@@ -66,7 +65,22 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
-        //
+        $request->validate([
+
+            'name' => 'required|max:20',
+            'due' => 'required|gte:1'
+        ]);
+
+        $client->name = $request['name'];
+        $client->due = $request['due'];
+        $client->comments = $request['comments'];
+
+        $client->save();
+
+        Session::flash('mensaje', 'Registro editado con exito');
+
+        return redirect()->route('client.index')->with('mensaje', 'Cliente actualizado con éxito');
+
     }
 
     /**

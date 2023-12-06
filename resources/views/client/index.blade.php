@@ -28,8 +28,15 @@
                     @forelse ($clients as $client)
                         <tr>
                             <td>
+                                <form action="{{ route ('client.destroy', $client)}}"method="POST" class="d-inline">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger"
+                                        onclick="return confirm('Esta seguro de elinimar este cliente')">
+                                        Eliminar
+                                    </button>
+                                </form>
                                 <a href="{{ route ('client.edit', $client) }}" class="btn btn-warning">Editar</a>
-                                Eliminar
                             </td>
                             <td>{{ $client->due }}</td>
                             <td>{{ $client->name }}</td>

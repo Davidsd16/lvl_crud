@@ -77,9 +77,9 @@ class ClientController extends Controller
 
         $client->save();
 
-        Session::flash('mensaje', 'Registro editado con exito');
+        Session::flash('mensaje', 'Registro Editado con Exito');
 
-        return redirect()->route('client.index')->with('mensaje', 'Cliente actualizado con éxito');
+        return redirect()->route('client.index');
 
     }
 
@@ -88,6 +88,10 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        //
+        $client->delete();
+
+        Session::flash('mensaje', 'Registro Elimonado con Exito');
+
+        return redirect()->route('client.index');
     }
 }

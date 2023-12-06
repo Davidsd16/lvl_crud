@@ -41,7 +41,7 @@
             <div class="mb-4">
                 <label for="comments" class="form-label">Comentarios</label>
                 <textarea name="comments" class="form-control mx-auto" style="width: 50%;"
-                    cols="30" rows="4">{{ old('comments') ?? @$client->comments }}></textarea>
+                    cols="30" rows="4" {{ old('comments') ?? @$client->comments }}></textarea>
                 <p class="form-text">Escriba aqui su comentario</p>
                 @error('comments')
                     <p class="form-text text-danger">{{ $message }}</p>
@@ -49,7 +49,7 @@
             </div>
 
             @if (isset($client))
-                <button type="submit" class="btn btn-info">Editar Cliente</button>   
+            <button type="submit" class="btn btn-info">Editar Cliente</button>   
             @else
                 <button type="submit" class="btn btn-info">Guardar Cliente</button>
             @endif
